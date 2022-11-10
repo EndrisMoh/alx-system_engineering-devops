@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # This script is displaying "Best School" 10 times using until loop
-COUNTER=0
+COUNTER=1
 until [ $COUNTER -gt 10 ]; do
       echo Best School
       COUNTER=$((COUNTER+1))
