@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# This script is displaying "Best School" 10 times &  back at 4 & luck at 8
+COUNTER=1
+while [ $COUNTER -le 10 ]; do 
+      if [ $COUNTER -eq 4 ]
+      then
+          echo bad luck
+      elif [ $COUNTER -eq 8 ]
+      then
+         echo good luck
+      else 
+         echo Best School
+      fi
+      ((COUNTER++))
+done
