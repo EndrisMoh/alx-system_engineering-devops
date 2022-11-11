@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 #This script displays "infinity ..." plus SIGTERMs
 
-trap "sudo rm -f /var/run/myscript.pid; exit" SIGQUIT
+touch /var/run/myscript.pid
 trap "echo I hate the kill command; sudo rm -f /var/run/myscrit.pid; exit" SIGTERM
 trap "echo Y U no love me?!; exit" SIGINT
-touch /var/run/myscript.pid
+trap "sudo rm -f /var/run/myscript.pid; exit" SIGQUIT
 while true
 do
     echo "To infinity and beyond"
