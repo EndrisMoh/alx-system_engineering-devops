@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# This script displays a list of all currently running processes, all users, in user-oriented format in heirarchy
+# shellcheck disable=SC2009
+
+ps auxf | grep -e  "bash"
