@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# This script displays that group by occurence number, visitor IP and HTTP status code from the Apache log file in list format sorted in ordered from the greatest to the lowest number of occurrences
+
+logfile="apache-access.log"
+awk -F' ' '{ print $1, $9}' $logfile | sort | uniq -c|sort -nr
