@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
-# Script that turns on an Apache Server
+# Script that runs Apache Server on 256-0 Docker container
+echo "ServerName localhost" >> /etc/apache2.conf
 sudo service apache2 start
