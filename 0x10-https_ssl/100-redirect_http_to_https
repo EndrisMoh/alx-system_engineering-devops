@@ -51,5 +51,6 @@ frontend oratexa.tech-frontend-https
 
 backend oratexa.tech-backend
         balance roundrobin
+        redirect scheme https code 301 if !{ ssl_fc }
         server 67903-web-01 54.160.65.134:80 check
         server 67903-web-02 34.229.55.221:80 check
