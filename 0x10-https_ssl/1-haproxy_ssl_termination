@@ -34,20 +34,20 @@ defaults
 	errorfile 503 /etc/haproxy/errors/503.http
 	errorfile 504 /etc/haproxy/errors/504.http
 
-# start of parameters for bairoking.tech
-frontend bairoking.tech-http-frontend
+# start of parameters for oratexa.tech
+frontend oratexa.tech-http-frontend
 	bind	 *:80
 	http-request set-header X-Forwarded-Proto http
-	default_backend	 bairoking.tech-backend
+	default_backend	 oratexa.tech-backend
 
 
-frontend  bairoking.tech-https-frontend
-	bind *:443 ssl crt /etc/ssl/bairoking.tech.pem
+frontend  oratexa.tech-https-frontend
+	bind *:443 ssl crt /etc/ssl/oratexa.tech.pem
 	http-request set-header X-Forwarded-Proto https
-        default_backend bairoking.tech-backend
+        default_backend oratexa.tech-backend
 
 
-backend bairoking.tech-backend
+backend oratexa.tech-backend
         balance roundrobin
         server 67903-web-01 54.160.65.134:80 check
         server 67903-web-02 34.229.55.221:80 check
