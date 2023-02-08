@@ -5,26 +5,29 @@ File name must be: todo_all_employees.json
 """
 import json
 import requests
-
-
-def make_all(users=None, todos=None):
-    """Turns all payloads into JSON format"""
-    all_list = []
-    alljson = {}
-    with open("todo_all_employees.json", "w") as f:
-        for i in users:
-            u = i.get("id")
-            for i in todos:
-                if u == i.get("userId"):
-                    all_list.append({"username": users[0].get("username"),
-                                     "task": i.get("title"),
-                                     "completed": i.get("completed")})
-            alljson[u] = all_list
-        json.dump(alljson, f)
+import sys
 
 
 if __name__ == "__main__":
-    users = requests.get("https://jsonplaceholder.typicode.com/users/").json()
-    todos = requests.get("https://jsonplaceholder.typicode.com/todos/").json()
+    url = 'https://jsonplaceholder.typicode.com/'
+    user = '{}users'.format(url)
+    res = requests.get(user)
+    json_o = res.json()
+    d_task = {}
+    for user in json_o:
+        name = user.get('username')
+        userid = user.get('id')
+        todos = '{}todos?userId={}'.format(url, userid)
+        res = requests.get(todos)
+        tasks = res.json()
+        l_task = []
+        for task in tasks:
+            dict_task = {"username": name,
+                         "task": task.get('title'),
+                         "completed": task.get('completed')}
+            l_task.append(dict_task)
 
-    make_all(users, todos)
+        d_task[str(userid)] = l_task
+    filename = 'todo_all_employees.json'
+    with open(filename, mode='w') as f:
+        json.dump(d_task, f)
