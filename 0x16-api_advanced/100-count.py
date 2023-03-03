@@ -4,7 +4,6 @@ A recursive function that queries the Reddit API, parses the title of all hot
   articles, and prints a sorted count of given keywords"""
 import json
 import requests
-import sys
 
 
 def count_words(subreddit, word_list, after="", count=[]):
@@ -54,3 +53,7 @@ def count_words(subreddit, word_list, after="", count=[]):
                     print("{}: {}".format(word_list[i].lower(), count[i]))
         else:
             count_words(subreddit, word_list, after, count)
+
+
+if __name__== "__main__":
+    pass
