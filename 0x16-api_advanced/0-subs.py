@@ -2,17 +2,27 @@
 """A function that queries the Reddit API and
  returns the number of subscribers for a given subreddit"""
 import requests
+import sys
 
 
 def number_of_subscribers(subreddit):
-    """returns total subscribers"""
-    header = {"User-Agent": "ALX"}
-    url = "https://www.reddit.com/r/" + subreddit + "/about.json"
-    r = requests.get(url, headers=header)
-    if r.status_code == 200:
-        return r.json().get("data", None).get("subscribers", None)
-    else:
+    """ Queries to Reddit API """
+    u_agent = 'Mozilla/5.0'
+
+    headers = {
+        'User-Agent': u_agent
+    }
+
+    url = "https://www.reddit.com/r/{}/about.json".format(subreddit)
+    res = requests.get(url, headers=headers, allow_redirects=False)
+    if res.status_code != 200:
         return 0
+    dic = res.json()
+    if 'data' not in dic:
+        return 0
+    if 'subscribers' not in dic.get('data'):
+        return 0
+    return res.json()['data']['subscribers']
 
 
 if __name__ == "__main__":
