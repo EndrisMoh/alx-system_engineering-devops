@@ -1,0 +1,8 @@
+# Monitor Nginx metrics using Datadog
+# Setup the below metrics separately.
+
+# The number of read requests issued to the device per second.
+  system.io.r_s
+
+# The number of write requests issued to the device per second.
+  system.io.w_s
